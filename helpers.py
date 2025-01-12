@@ -18,15 +18,6 @@ class UserGenerator:
 
 
 class AuthUser:
-
-    # Валидные тестовые данные
-    valid_email = 'анастасиязаборских17001@yandex.ru'
-    valid_pass = 'test01'
-
-    # Невалидные тестовые данные
-    invalid_email = 'неверный_email@yandex.ru'
-    invalid_pass = 'неверный пароль'
-
     @staticmethod
     def auth_user(chrome_driver, email, password):
         """Прохождение авторизации валидным пользователем"""

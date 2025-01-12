@@ -3,11 +3,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from helpers import AuthUser
 from locators import ConstructorLocators
+from data import URLStorage, TestDataAuth
 
 
 class TestConstructor:
-    base_url = "https://stellarburgers.nomoreparties.site/"
-
     # Список табов для проверки переходов
     locators = [
         ConstructorLocators.buns_tab,
@@ -19,8 +18,8 @@ class TestConstructor:
         """Проверка перехода между табами в Конструкторе у авторизованного пользователя"""
 
         # Авторизация валидным пользователем
-        chrome_driver.get(self.base_url + 'login')
-        AuthUser().auth_user(chrome_driver, AuthUser.valid_email, AuthUser.valid_pass)
+        chrome_driver.get(URLStorage().get_url('auth_page'))
+        AuthUser().auth_user(chrome_driver, TestDataAuth.valid_email, TestDataAuth.valid_pass)
 
         # Проверка
         for locator in self.locators:
@@ -33,7 +32,7 @@ class TestConstructor:
         """Проверка перехода между табами в Конструкторе у неавторизованного пользователя"""
 
         # Переход на Главную страницу
-        chrome_driver.get(self.base_url)
+        chrome_driver.get(URLStorage().get_url('base_url'))
 
         # Проверка
         for locator in self.locators:
